@@ -1,0 +1,105 @@
+# Question 1
+
+I have always been interested in Application Stacks and I have always admired
+one particular organisation: Airbnb and the way they:
+• Seamlessly allow users from over 81,000 cities to rent out their homes to other people who are looking for accomidation
+* Allow users to invite other friends to see the same places they are looking to book
+• Use bots for customer support
+
+
+Presentation Layer
+Ruby on Rails - Airbnb uses this web-application framework for database-backed web applications. It deals well with HTTP requests and scales horizontally very well.
+ReactJS - this advanced Javascript library is for creating UIs like that of Airbnb. 
+It provides great rendering performance which improves the user experience. It does this by eliminating the usage of code-heavy frameworks and implements reusable code.
+
+React Native - this technology is used for mobile app development. It is platform agnostic so Airbnb can leverage all of its engineers to build and support their mobile app and 
+it can be deployed in both iOS in Android code bases.
+Its also lean because the one repository can be deployed across all mobile platforms.
+
+
+Business/Application Layer
+
+Nginx: This is a web server that Airbnb uses to provide services using a RESTful API. It speeds up content delivery by using a proxy server. This proxy server ensures Airbnb's security and scalability.
+Additionally, Nginx can load balance, allows for both reverse and mail proxy, and can handle static files, index files and auto-indexing. 
+
+
+
+Data Access Layer
+
+MYSQL - Airbnb uses MySQL to manage core business data. The databases are broken down by application which allows for easy capacity planning.
+Users' messaging threads and calendar listings are stored seperately to the core booking flow data. They are managed in their own seperate databases.
+
+AWS - Within this, Airbnb uses Elastic Load Balancing to automatically distribute incoming traffic between EC2 instances. This allows for Airbnb's system to still perform well
+even during sudden traffic spikes or unexpected traffic fluctuations. Furthermore, to monitor their servers and their resources, Airbnb uses Amazon CloudWatch.
+CloudWatch collects the operational data in the form of logs, metrics and events. Morevoer, it allows supervision of EC2 assets via the Amazon Management Console. This is made up of automated dashboards
+which gives a view of their resources, applications and services on AWS.
+
+Redis - This is a no SQL scalable, key-value pair database that Airbnb uses. It allows Airbnb to store cache infrastructure which is transient and needs to be served up fast.
+
+Amazon RDS - This helps to simplify time consuming adminitration tasks associated with databases. Difficult procedures that Airbnb does such as replication and scaling can be easily completed with a basic API call 
+or through the AWS management console. Airbnb further uses Multiple Avaliable Zones to automate database replication and augment data durability.
+
+References:
+https://www.forbes.com/sites/quora/2018/02/20/what-technology-stack-does-airbnb-use/?sh=9eeb2484025c
+https://yalantis.com/blog/the_technology_stack_behind_airbnb/
+https://medium.com/@poojaseenu1999/the-technology-stack-behind-airbnb-6b23fe425612
+https://dev.to/tyler032/tech-stack-to-build-marketplaces-like-airbnb-1ne1
+https://softwareengineeringdaily.com/2018/09/24/show-summary-react-native-at-airbnb/
+https://enqueuezero.com/airbnb-architecture.html
+https://hub.packtpub.com/what-software-stack-does-airbnb-use/
+https://medium.com/airbnb-engineering/unlocking-horizontal-scalability-in-our-web-serving-tier-d907449cdbcf
+
+
+# Question 2
+
+Airbnb collects data from users over the world and has flunctations in demand due to the different holiday seasons.
+The data comes from both those looking for rental accomidation as well as those trying to rent their property.
+Users can use Airbnb both from their computer or from mobile devices such as iOS and Android.
+Therefore, there is a lot of data to both store and analyse.
+
+The Hadoop Distributed File System (HDFS) is what Airbnb uses this as their core data platform the drives the site and their analytics. 
+Airbnb stores unstructured data such as room info, room owners, locations of the room etc. 
+Hadoop is a framework for stores and processing this big data. It split data into chunks and saves across many servers. It also uses the MapReduce algorithm which allows for processing and generating big data sets in a parallel manner. 
+The name MapReduce comes from reading data into a database, mapping it for analysis and performing maths operations to reduce it. This is what is done to bigdata in hadoop.
+Airbnb uses Hadoop to store users data across large files and replicates their data across multiple hosts to achieve reliable information retrieval.
+In addition to the Hadoop File System, Airbnb has a data warehouse that uses Hive. Airbnb has over 1.5 petabytes of data in Hive-managed tables within its Hadoop Distributed File System which is hosted on EC2 instances.
+
+
+Airbnb has millions of photos to store from its users. They are important as they show off the accomidation being rented. 
+Another technology used by Airbnb is S3 or Simple Storage Service which is a part of AWS. Airbnb stores its images for its website in S3 and stores backup data in Hadoop clusters along with using the Presto SQL query engine.
+Presto is high performance and distributed. As a distributed query engine, its treats the entire database cluster as a single, logical SQL database. It can use multiple servers for querying so that no single server becomes a bottleneck. Airbnb uses this to combine data from multiple sources and to allow analytics
+to be performed across the entire organisation.
+
+The Presto query is critical for many of Airbnb's features. For example, Airbnb price feature continuously tells hosts what the probability is of them getting a booking at the price they have chosen.
+Hosts can see what dates are likely sold out and the current price offering and which ones are not. 
+Employees are taught SQL so that all can query the data warehouse it maintains. In addition Airbnb has created a tool called Airpal so that it is easy to design SQL queries and dispath them to 
+the Presto layer of the data warehouse.
+
+Also Airbnb's price recommendation engine pulls in over 5 billion training data points and trains a model to predict the price of a listing depending on various factors like the neighbourhood, house size etc.
+The machine learning package that Airbnb use is Aerosolve and was built by their own data science team.
+Additionally, it can produce models based on conditional probability. It created a user data driven search model which 
+
+https://www.dezyre.com/article/how-data-science-increased-airbnbs-valuation-to-25-5-bn/199
+https://medium.com/airbnb-engineering/using-chatbots-to-provide-faster-covid-19-community-support-567c97c5c1c9
+
+https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastructure/#:~:text=The%20core%20data%20platform%20employed,the%20Hadoop%20Distributed%20File%20System.&text=On%20top%20of%20the%20HDFS,and%20open%20sourced%20by%20Facebook.
+https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastructure/
+
+# Question 3
+On the back-end, Airbnb uses:
+
+5000 AWS EC2 instances. They are all 3.8xlarge machines and are each backed up by 3 Terrabytes of Elastic Block Storage. All the Hadoop Data File System data is stored in this mounted EBS.
+1500 of the EC2 instances are deployed for the web-facing parts of the applications and the remaining 3,500 for analytics and ML alogrithms
+Elastic Load Balancing is used to distrubte the incoming traffic between multiple EC2 instances.
+Airbnb holds around 1.5 petabytes of data in their Hive-managed tables in Hadoop Distributed File System clusters.
+
+
+Simple Storage Service (S3). This service houses backup fata and static files. Airbnb uses this service to store over 10 terabytes of user photos.
+Amazon CloudWatch - this is a tool for supervising all of the EC2 assets from the AWS Management Console.
+
+Amazon RDS
+
+ 
+https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastructure/
+https://medium.com/airbnb-engineering/data-infrastructure-at-airbnb-8adfb34f169c
+https://medium.com/@abhiraj19000/aws-airbnb-case-study-43e34e9fb8b3
