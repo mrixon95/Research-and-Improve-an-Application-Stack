@@ -182,7 +182,7 @@ Furthermore, if they are interested in the show they can access the array of epi
 
 # Question 5
 
-![](ERD_Question6.PNG)
+![](ERD_Question6.png)
 
 # Question 6
 
