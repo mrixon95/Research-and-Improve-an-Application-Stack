@@ -2,22 +2,23 @@
 
 I have always been interested in Application Stacks and I have always admired one particular organisation: **Airbnb** and the way they:
 
-- Seamlessly allow users from over 81,000 cities to rent out their homes to other people who are looking for accomidation
+- Seamlessly allow millions of users from over 81,000 cities to rent out their homes to other people who are looking for accommodation
 
 * Allow users to invite other friends to see the same places they are looking to book
-* Use bots for customer support
+* Use Machine Learning algorithms to predict accommodation prices and personalise recommendations to each user
 
 ### Presentation Layer
 - **ReactJS**
 
-  This advanced Javascript library is for creating UIs like that of Airbnb. 
-  It provides great rendering performance which improves the user experience. It does this by eliminating the usage of code-heavy frameworks and implements reusable code.
+  This advanced JavaScript library is for creating UIs like that of Airbnb. 
+  It provides great rendering performance which improves the user experience. It does this by eliminating the usage of code-heavy frameworks and implements reusable code. It shows visually by using the browser on a users device and asks the API for information.
 
 - **React Native **
 
-  This technology is used for mobile app development. It is platform agnostic so Airbnb can leverage all of its engineers to build and support their mobile app and 
-  it can be deployed in both iOS in Android code bases.
+  This technology is used for mobile app development. It is platform agnostic so Airbnb can leverage all of its engineers to build and support their mobile app and it can be deployed in both iOS in Android code bases.
   Its also lean because the one repository can be deployed across all mobile platforms.
+  
+  It talks to the same API as ReactJS to retrieve information to display to the user. This is the case because it communicates with a single source of truth which can be displayed on multiple devices.
   
   
 
@@ -25,12 +26,29 @@ I have always been interested in Application Stacks and I have always admired on
 
 - **Ruby on Rails**
 
-  Airbnb uses this web-application framework for database-backed web applications. It deals well with HTTP requests and scales horizontally very well. It is highly likely to be in API mode. It just sends JSON so the ReactJS does the work with Javascript.
+  Airbnb uses this web-application framework for database-backed web applications. It deals well with HTTP requests and scales horizontally very well. It is highly likely to be in API mode. It just sends JSON so that the ReactJS can present the view to users with Javascript.
+
+  
+
+  Ruby on Rails uses **convention over configuration**. It uses default structures for web pages, databases and web services. Conventions speed up the development process and it is possible to create great applications without knowing the conventions already in place.  These conventions help you skip making mundane decisions and make faster progress in the areas of the application which really matter.
+
+  Additionally, Ruby on Rails promotes the use of the MVC pattern for its applications by storing code for each element as sperate files in separate directories. MVC separates the application into:
+
+  **Models** for handling data and business logic
+
+  **Controllers** for handling the UI and application
+
+  **Views** for handling graphical UI objects and presentation
+
+  Separating the application into these three distinct components helps improve scalability, easily maintain components and easily reuse model over multiple views.
+
+  Scalability is important for Airbnb are they have an ever increasing number of users on their platform as well as a large number of features. Moreover, decoupling the components so that they have low dependency on each other, is crucial for Airbnb developers to be able to effectively maintain them. In effect this means that bug fixes made by Airbnb developers on one piece of functionality should not then affect another piece of functionality.
+
+  
 
 - **Nginx**
 
-  This is a web server that Airbnb uses to provide services in conjunction with Ruby on Rails. It speeds up content delivery by using a proxy server. This proxy server ensures Airbnb's security and scalability.
-  Additionally, Nginx can load balance, allows for both reverse and mail proxy, and can handle static files, index files and auto-indexing. 
+  This is a web server that Airbnb uses to provide services in conjunction with Ruby on Rails. It speeds up content delivery by using a proxy server. This proxy server ensures Airbnb's security and scalability. Additionally, Nginx can load balance, allows for both reverse and mail proxy, and can handle static files, index files and auto-indexing. 
 
 
 
@@ -39,23 +57,19 @@ I have always been interested in Application Stacks and I have always admired on
 - **MYSQL**
 
   Airbnb uses MySQL to manage core business data. The databases are broken down by application which allows for easy capacity planning.
-  Users' messaging threads and calendar listings are stored seperately to the core booking flow data. They are managed in their own seperate databases.
+  Users' messaging threads and calendar listings are stored separately to the core booking flow data. They are managed in their own separate databases.
 
 - **AWS ELB and Cloud Watch**
 
-  Within this, Airbnb uses Elastic Load Balancing to automatically distribute incoming traffic between EC2 instances. This allows for Airbnb's system to still perform well
-  even during sudden traffic spikes or unexpected traffic fluctuations. Furthermore, to monitor their servers and their resources, Airbnb uses Amazon CloudWatch.
-  CloudWatch collects the operational data in the form of logs, metrics and events. Morevoer, it allows supervision of EC2 assets via the Amazon Management Console. This is made up of automated dashboards
-  which gives a view of their resources, applications and services on AWS.
-
+  Within this, Airbnb uses Elastic Load Balancing to automatically distribute incoming traffic between EC2 instances. This allows for Airbnb's system to still perform well even during sudden traffic spikes or unexpected traffic fluctuations. Furthermore, to monitor their servers and their resources, Airbnb uses Amazon CloudWatch. CloudWatch collects the operational data in the form of logs, metrics and events. Moreover, it allows supervision of EC2 assets via the Amazon Management Console. This is made up of automated dashboards which gives Airbnb an overall view of their resources, applications and services on AWS.
+  
 - **Redis**
 
-  This is a no SQL scalable, key-value pair database that Airbnb uses. It allows Airbnb to store cache infrastructure which is transient and needs to be served up fast.
+  This is a no SQL scalable, key-value pair database that Airbnb uses. It allows Airbnb to store cache infrastructure which is transient and needs to be served up fast to users of the site. This reduces latency which improves the user experience on Airbnb's website.
 
 * **Amazon RDS** 
   
-  This helps to simplify time consuming administration tasks associated with databases. Difficult procedures that Airbnb does such as replication and scaling can be easily completed with a basic API call 
-  or through the AWS management console. Airbnb further uses Multiple Avaliable Zones to automate database replication and augment data durability.
+  This helps to simplify time consuming administration tasks associated with databases. Difficult procedures that Airbnb does such as replication and scaling can be easily completed with a basic API call or through the AWS management console. Airbnb further uses Multiple Available Zones to automate database replication and augment data durability. These multiple available zones ensure that the Airbnb site almost never goes down and user data is backed up in case of system failure.
 
 ### References:
 https://www.forbes.com/sites/quora/2018/02/20/what-technology-stack-does-airbnb-use/?sh=9eeb2484025c
@@ -67,34 +81,35 @@ https://enqueuezero.com/airbnb-architecture.html
 https://hub.packtpub.com/what-software-stack-does-airbnb-use/
 https://medium.com/airbnb-engineering/unlocking-horizontal-scalability-in-our-web-serving-tier-d907449cdbcf
 
+https://medium.com/@dezwhatiwant/ruby-on-rails-convention-over-configuration-1a09534d8e3c
+
+https://www.sitepoint.com/model-view-controller-mvc-architecture-rails/
+
 
 # Question 2
 
-Airbnb collects data from users over the world and has flunctations in demand due to the different holiday seasons.
-The data comes from both those looking for rental accomidation as well as those trying to rent their property.
+Airbnb collects data from millions of users over the world and has fluctuations in demand due to the different holiday seasons.
+The data comes from both those looking for rental accommodation as well as those trying to rent their property.
 Users can use Airbnb both from their computer or from mobile devices such as iOS and Android.
-Therefore, there is a lot of data to both store and analyse.
+Clearly, Airbnb has a lot of data from multiple sources to both store and analyse and the following paragraphs summarise the technologies used by Airbnb to effectively manage their user data.
 
 The **Hadoop Distributed File System (HDFS)** is what Airbnb uses this as their core data platform the drives the site and their analytics. 
 Airbnb stores unstructured data such as room info, room owners, locations of the room etc. 
 Hadoop is a framework for stores and processing this big data. It split data into chunks and saves across many servers. It also uses the MapReduce algorithm which allows for processing and generating big data sets in a parallel manner. 
-The name MapReduce comes from reading data into a database, mapping it for analysis and performing maths operations to reduce it. This is what is done to bigdata in hadoop.
+The name MapReduce comes from reading data into a database, mapping it for analysis and performing maths operations to reduce it. This is what is done to bigdata in Hadoop.
 Airbnb uses Hadoop to store users data across large files and replicates their data across multiple hosts to achieve reliable information retrieval.
 In addition to the Hadoop File System, Airbnb has a data warehouse that uses Hive. Airbnb has over 1.5 petabytes of data in Hive-managed tables within its Hadoop Distributed File System which is hosted on EC2 instances.
 
-Airbnb has millions of photos to store from its users. They are important as they show off the accomidation being rented. 
-Another technology used by Airbnb is S3 or **Simple Storage Service** which is a part of AWS. Airbnb stores its images for its website in S3 and stores backup data in Hadoop clusters along with using the Presto SQL query engine.
-Presto is high performance and distributed. As a distributed query engine, its treats the entire database cluster as a single, logical SQL database. It can use multiple servers for querying so that no single server becomes a bottleneck. Airbnb uses this to combine data from multiple sources and to allow analytics
-to be performed across the entire organisation.
+Another technology used by Airbnb is S3 or **Simple Storage Service** which is a service offered by AWS. Airbnb has millions of photos to store from its users. They are important as they show off the accommodations that are available for rent. Airbnb stores its images for its website in S3 and stores backup data in Hadoop clusters along with using the Presto SQL query engine.
+**Presto** is a high performance and distributed query engine. It treats the entire database cluster as a single, logical SQL database. It can use multiple servers for querying so that no single server becomes a bottleneck. Airbnb uses this to combine data from multiple sources and to allow analytics to be performed across the entire organisation.
 
-The **Presto query** is critical for many of Airbnb's features. For example, Airbnb price feature continuously tells hosts what the probability is of them getting a booking at the price they have chosen.
-Hosts can see what dates are likely sold out and the current price offering and which ones are not. 
-Employees are taught SQL so that all can query the data warehouse it maintains. In addition Airbnb has created a tool called Airpal so that it is easy to design SQL queries and dispath them to 
-the Presto layer of the data warehouse.
+The **Presto query** is critical for many of Airbnb's features. For example, Airbnb price feature continuously tells hosts what the probability is of them getting a booking at the price they have chosen. Hosts can see what dates are likely sold out and the current price offering and which ones are not. 
 
-Also Airbnb's price recommendation engine pulls in over 5 billion training data points and trains a model to predict the price of a listing depending on various factors like the neighbourhood, house size etc.
-The machine learning package that Airbnb use is **Aerosolve** and was built by their own data science team.
-Additionally, it can produce models based on conditional probability. It created a user data driven search model which 
+Airbnb has created a tool called **Airpal** so that it is easy for their employees to design SQL queries and dispatch them to the Presto layer of the data warehouse. This enables employees without SQL knowledge to still effectively query the Airbnb data warehouse for information they need.
+
+A popular feature of Airbnb is its price recommendation. The engine behind it pulls in over 5 billion training data points and trains a model to predict the price of a listing depending on various factors like the neighbourhood, house size etc.
+The machine learning package that Airbnb uses for this is **Aerosolve** and was built by their own data science team.
+The package can be used to produce models based on conditional probability. These models can be used to explain why certain listings command higher prices, along with predicting home values and detecting host's preferences. These models also help deliver great insights to the hosts and help users find suitable accommodation that satisfies their preferences.
 
 https://www.dezyre.com/article/how-data-science-increased-airbnbs-valuation-to-25-5-bn/199
 https://medium.com/airbnb-engineering/using-chatbots-to-provide-faster-covid-19-community-support-567c97c5c1c9
@@ -103,24 +118,33 @@ https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastruc
 https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastructure/
 
 # Question 3
-On the back-end, Airbnb uses:
+### Hardware and cloud platforms that are used by **Airbnb**:
 
-**5000 AWS EC2 instances**. They are all **3.8xlarge machines** and are each backed up by 3 Terrabytes of **Elastic Block Storage**. All the Hadoop Data File System data is stored in this mounted EBS.
-1500 of the EC2 instances are deployed for the web-facing parts of the applications and the remaining 3,500 for analytics and ML alogrithms
-Elastic Load Balancing is used to distrubte the incoming traffic between multiple EC2 instances.
-Airbnb holds around **1.5 petabytes of data** in their Hive-managed tables in Hadoop Distributed File System clusters.
+**5000 AWS EC2 instances**. They are all **3.8xlarge machines** and are each backed up by **3 Terabytes of Elastic Block Storage**. All of the **Hadoop Data File System** data is stored in this mounted EBS. Airbnb holds around **1.5 petabytes of data** in their Hive-managed tables in Hadoop Distributed File System clusters. Of the 5,000 instances, 1,500 of the EC2 instances are deployed for the web-facing parts of the applications and the remaining 3,500 for analytics and ML algorithms. There are many millions of users and hosts on Airbnb with their own set of data points. Therefore the greater number of EC2 instances dedicated to analytics and ML algorithms makes sense given the plethora of data available for optimising Airbnb's ML models. Amongst other important goals, these models attempt to predict home values on Airbnb and recommend personalised listings for each user.  
 
-**Simple Storage Service (S3)**. This service houses backup fata and static files. Airbnb uses this service to store over 10 terabytes of user photos.
-**Amazon Elastic MapReduce**- To process all of the data that Airbnb receives, MapReduce is used. It helps process and analyse **50 GB of data** daily in the AWS cloud.
-Specifically, the mapreduce framework breaks down the input data into smaller fragments or shards, that distribute it to the nodes that compose the cluster.
+**AWS Elastic Load Balancing** is used by Airbnb to distribute the incoming traffic between multiple EC2 instances. This is to ensure that no individual EC2 instance is being overwhelmed with user requests and so that the performance of Airbnb does not degrade. This helps keeps the Airbnb site up and running with high availability.
 
-**Amazon CloudWatch** - this is a tool for supervising all of the EC2 assets from the AWS Management Console.
+
+
+**Simple Storage Service (S3)**. This service houses backup data and static files as objects. Airbnb uses this service to store over **10 terabytes** of user photos. Airbnb would chose object storage for images over block storage because parts of individual photos do not need to be edited. Also **retrieval of photos needs to be quick** which is an advantage of object storage over block storage. **Block storage is slow for retrieving data** because it is broken down into pieces called blocks and putting all the blocks back together every time it is retrieved can take time. On the other hand, Object storage with AWS S3 allows for fast and easy access to files because **object storage doesn't split up files**. Instead, the object's data is stored in the one place.
+
+**Amazon Elastic MapReduce** . This technology on the AWS cloud platform processes all of the data that Airbnb receives. It helps process and analyse **50 GB of data** daily in the AWS cloud. Specifically, the MapReduce framework breaks down the input data into smaller fragments or shards, that distribute it to the nodes that compose the cluster. This makes it easily to store all the data that Airbnb receives from its millions of users and hosts.
+
+
+
+**Amazon CloudWatch**. This is a tool for supervising all of the EC2 assets from the AWS Management Console. It allows Airbnb to easily identify any performance bottlenecks. For example, if Airbnb can locate a server that is being overwhelmed with requests then they can **divert those requests** to servers with less load.
+
+Additionally, **CloudWatch** provides 15 months of data retention. This historical data can be used to predict what level of usage there will be of Airbnb's CPU, memory, disk and network data. Airbnb experiences seasonal variation in usage with spikes during Summer time. It is therefore important to know how much more CPU, memory and network performance they need during these times so they can plan in advance for how much of each resource they will likely need.
+
+#### References:
 
 https://ngenioussolutions.com/blog/role-played-by-amazon-web-services-aws-in-growth-of-airbnb/
 https://www.nextplatform.com/2015/09/10/airbnb-shares-the-keys-to-its-infrastructure/
 https://medium.com/airbnb-engineering/data-infrastructure-at-airbnb-8adfb34f169c
 https://medium.com/@abhiraj19000/aws-airbnb-case-study-43e34e9fb8b3
 https://ngenioussolutions.com/blog/role-played-by-amazon-web-services-aws-in-growth-of-airbnb/
+
+https://medium.com/cracking-the-data-science-interview/the-5-machine-learning-use-cases-that-optimize-your-airbnb-travel-experience-fb027a56e5a5
 
 
 
@@ -167,13 +191,13 @@ The entity itself has information about the album such as the type of album, an 
 4. **Artist**
 
 The Artist API gives back information on the number of followers for that artist, the genres for the artist, images of their songs, their name and their popularity. 
-The Artist entity itself contains the artists array of genres, an array of images of the artist, their number of followers, their name, popularity and spotify URI.
+The Artist entity itself contains the artists array of genres, an array of images of the artist, their number of followers, their name, popularity and Spotify URI.
 Users can find an artists they like and listen to their songs on Spotify. They can also find links to their social media pages, a bio of the artist, how many people monthly listeners that artist has and where in the world those listeners are from.
 
 5. **Playlist object**
 
 The Playlist entity contains information about one of the user's playlists. Information it has include the name of the playlist, an array of up to three images for the playlists, an array of playlist track objects,
-the spotify URI of the playlist and an followers object which has info on the followers of the playlists. The playlist API can be used to retrieve, modify and even delete tracks from a user's playlist.
+the Spotify URI of the playlist and an followers object which has info on the followers of the playlists. The playlist API can be used to retrieve, modify and even delete tracks from a user's playlist.
 This object allows users to give a group of similar songs a name, images and added to that playlist.
 Also the songs can be ordered which allows them to listen to each track in the order that they choose.
 
@@ -184,7 +208,7 @@ also stores additional information which are the timestamp it was added at, who 
 
 7. **User object (public)**
 
-The entity contains information about a user that is publically available. It has the user's display name, a followers object with information about their follows, the user's pofile image
+The entity contains information about a user that is publicly available. It has the user's display name, a followers object with information about their follows, the user's profile image
 the user's id and their Spotify URI. This user object allows other users to see which artists their friends have been listening to as well as their public playlists.
 
 8. **User object (private)**
@@ -201,7 +225,11 @@ Furthermore, if they are interested in the show they can access the array of epi
 
 # Question 5
 
+### Entity Relationship Diagram of Spotify
+
 ![](./ERD_Question6.png)
+
+
 
 
 
@@ -217,11 +245,11 @@ The input data to the artist top tracks API endpoint is
 - the spotify id of the artist (**path parameter**)
 - country to look at for the artist's top tracks (**query parameter**)
 
-The output data from this endpoint are an array of track objects for the particular artist in the inputed country.
+The output data from this endpoint are an array of track objects for the particular artist in the inputted country.
 Each **track object** in the array has the following data:
 
 **album** -  The album on which the track appears
-**vailable_markets** - A list of the countries in which the track can be played
+**available_markets** - A list of the countries in which the track can be played
 **duration_ms** - The track length in milliseconds
 **explicit** - Whether or not the track has explicit lyrics
 **name** - The name of the track.
@@ -246,7 +274,7 @@ This is another revenue stream for Spotify.
 
 ### Second process
 
-https://api.spotify.com/v1/episodes/{id} is a spotify endpoint for receiving information about a particular episode.
+https://api.spotify.com/v1/episodes/{id} is a Spotify endpoint for receiving information about a particular episode.
 Each episode has a unique Spotify ID and that must be passed through as a path parameter.
 
 Spotify users can use this API endpoint to get details on and view a particular episode that they are interested in.
@@ -286,7 +314,7 @@ As a way to improve the data model, Spotify could implement the following extens
 
 ## Extentions 
 
-- **Referal Discounts**
+- **Referral Discounts**
   If a Spotify user upgrades to a premium account, then they could be given a referral code to send to users friends. If a friend of theirs also upgrades to a premium Spotify account and enters in the referral code then they can receive a 15% discount on their subscription.
   Overall, this initiative can only improve the number of users who upgrade to premium. Some of the referred friends may have signed up anyway but overall it should improve revenue. Even if the friend doesn't sign up, it serves as free word-of-mouth advertising for Spotify. Both advertising and number of premium users help to achieve the organisational function of earning revenue.
 
@@ -294,14 +322,14 @@ As a way to improve the data model, Spotify could implement the following extens
   For example, selling an extra car has direct material, manufacturing and labor costs attached to it. The product cost per car is at least a few hundred dollars.
   On the other hand, each new premium Spotify user has very little expense attached it. The cost of running the server and network stay the same.
   Only when millions of new users are added, will the cost of running Spotify's servers and networks need to increase and that is relatively negligible compared to the additional revenue from new users.
-  Therefore the referral discount method should be very effective at improving the **organisation function of increasing the number of users listening to Spotify**.
+  Therefore the referral discount method should be very effective at improving the **organisational function of increasing the number of users listening to Spotify**.
 
 - **Give reviews on tracks and artists**
   A Spotify user may be interested in knowing what other users think about a particular track or artist. Also a spotify user may want to like another users comment in order to express agreement with what they have said. 
 
   Allowing reviews would really help users to find out whether the track or artist is for them and once they find good reviews for a particular track or artist, they will be encouraged to listen to them
   Listening to more music will result in users listening to more advertisements. This makes Spotify advertising more valuable to potential advertisers.
-  More advertising revenue would achieve the **organisation function of increasing overall revenue**.
+  More advertising revenue would achieve the **organisational function of increasing overall revenue**.
 
 ### Additional entity:
 
@@ -330,7 +358,7 @@ The track reviews should tell us when a particular user made their review on tha
 
 - **Referral Discounts**
 
-Spotify will need to generate unique referral code numbers and inserting a very large number of them into the **referral_codes table**.
+Spotify will need to generate unique referral code numbers and insert a very large number of them into the **referral_codes table**.
 Once a user decides to refer a friend then this input from the user will be used to trigger the process of assigning them a unique referral code and changing the status of the referral code to pending. If the referred friend upgrades to premium then they have their user entity updated with membership status of 'premium' and discount rate of 15%. The referral code has now been validated and the **referral_codes table** must be updated so that the column **is_validated** becomes true.
 
 
@@ -347,7 +375,7 @@ Likewise, the **user_artist_reviews** table will have a column for the user, art
 
 
 
-### Entity Relationship Diagram with the extension
+### Entity Relationship Diagram of Spotify with the extensions added
 
 ![](./ERD_Question8_green_box.png)
 
@@ -391,7 +419,7 @@ For the reviews extension, this will very much alter what a user sees when they 
 
 ### Additional costs that may be incurred to implement the improvement
 
-The extensions will require more database tables and records to be written to them. Also there will be more CRUD operations required to keep the database records up to date. If this results in a very significant increase in the size of the database then Spotify may need to increase the size of their Amazon EC2 instance to accomidate for this new data. Also the network speed may deteriorate if may users are trying to write their own reviews. Therefore upgrading the network performance of the EC2 instances that Spotify uses is crucial. This will incur additional costs.
+The extensions will require more database tables and records to be written to them. Also there will be more CRUD operations required to keep the database records up to date. If this results in a very significant increase in the size of the database then Spotify may need to increase the size of their Amazon EC2 instance to accommodate for this new data. Also the network speed may deteriorate if may users are trying to write their own reviews. Therefore upgrading the network performance of the EC2 instances that Spotify uses is crucial. This will incur additional costs.
 
 Also the technical support required from the team of front-end developers, back-end developers, database administrators and testers may result in more labour costs depending on how they are paid for their work.
 
@@ -409,7 +437,7 @@ Also the technical support required from the team of front-end developers, back-
 
 - **Simple free-tier**: Google Cloud Platform has a $300 credit offer for new customers. Although a small amount  for large enterprises like Spotify, it does offer more flexibility in the services that Spotify can try. Moreover, GCP makes it simple with an always free-tier on 24 products and services, subject to consumption limits. AWS is more complicated as they have 30-day, 12-month and always-free periods depending on which service of theirs you use.
 
-- **Projects vs Accounts**: Google Cloud Platform groups your service usage by projects. This way one account can have many different, seperate projects. In an organisation setting, different divisions can have seperate project spaces all in the one account. Once a project is finished it can be deleted and all the resources for that project are deleted. However, with AWS, it is more difficult. You need multiple user account and each account has a seperate set of users. This is quite cumbersome since there are so many users. There are ways to connect the accounts so a user has across account permissions but it is a pain to setup and manage.
+- **Projects vs Accounts**: Google Cloud Platform groups your service usage by projects. This way one account can have many different, separate projects. In an organisation setting, different divisions can have separate project spaces all in the one account. Once a project is finished it can be deleted and all the resources for that project are deleted. However, with AWS, it is more difficult. You need multiple user account and each account has a separate set of users. This is quite cumbersome since there are so many users. There are ways to connect the accounts so a user has across account permissions but it is a pain to setup and manage.
 
   
 
